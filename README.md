@@ -8,7 +8,7 @@ Once the files has been ecnrypted , the same key can be used to decrypt them usi
 
 **HOW IT WORKS ?**
 
-# **ransom.py - ** 
+# ransom.py -
 
 STEP1 : To avoid any unnecessary damage to the mcahine we are perfoming the demonstration to , a _safeguard_ has been put in place to after the program is executed.
 To proceed with the experimentation , type _y_ (lowercase) .
